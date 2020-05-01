@@ -1,4 +1,4 @@
-vimrc_Zavier
+Zavier_vim
 -------------------
 Zavier's Vim configuration.
 
