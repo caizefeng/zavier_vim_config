@@ -1,0 +1,349 @@
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'vim-airline/vim-airline'
+
+Plugin 'flazz/vim-colorschemes'
+
+Plugin 'vim-scripts/The-NERD-Commenter'
+
+Plugin 'alpertuna/vim-header'
+
+Plugin 'scrooloose/nerdtree' 
+
+Plugin 'vim-python/python-syntax'
+
+Plugin 'luochen1990/rainbow'
+
+Plugin 'justinmk/vim-syntax-extra'
+
+Plugin 'w0rp/ale'
+
+"Plugin 'ctrlpvim/ctrlp.vim'
+
+Plugin 'majutsushi/tagbar'
+
+"Plugin 'xavierd/clang_complete'
+
+"Plugin 'vim-scripts/a.vim'
+
+Plugin 'alejandrogallo/vasp.vim'
+
+Plugin 'sencer/lammps.vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'neomake/neomake'
+"Plugin 'vim-syntastic/syntastic'
+"Plugin 'tmhedberg/SimpylFold'
+"Plugin 'kien/rainbow_parentheses.vim'
+"Plugin 'bfrg/vim-cpp-modern'
+"Plugin 'hdima/python-syntax'
+"Plugin 'vim-scripts/AuthorInfo'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'vim-scripts/DoxygenToolkit.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" Nerd-Commenter config
+let mapleader=','
+
+" vim-header config 
+let g:header_field_author = 'Zefeng Cai'  " replace by your own name
+let g:header_field_author_email = 'czf17@mails.tsinghua.edu.cn' " replace by your own email
+map <F4> :AddHeader<CR>
+let g:header_field_timestamp_format = '%m/%d/%Y'  " American convention
+let g:header_auto_add_header = 0
+"Adding Headers
+":AddHeader        Adds brief author information or updates if exists
+":AddMinHeader     Adds minified version of author information
+"Adding Licenses
+":AddMITLicense    Adds MIT License
+":AddApacheLicense Adds Apache License
+":AddGNULicense    Adds GNU License
+":AddWTFPLLicense  Adds WTFPL License
+
+" airline config
+let g:airline_section_b = '%{strftime("\ %m/%d/%Y\ -\ %H:%M\ ")}'
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_powerline_fonts = 1
+"let g:airline#extensions#ale#enabled = 1
+
+" python-syntax config
+let g:python_highlight_all = 1
+let g:python_highlight_space_errors = 0
+
+" nerdtree config
+"open a NERDTree automatically when vim starts up if no files were specified
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+map <F2> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeIgnore=['\.o$', '\.ko$', '\.so$', '\.a$', '\.bak$', '\~$']
+let NERDTreeSortOrder=['\/$', 'Makefile', '\.c$', '\.cc$', '\.cpp$', '\.h$', '*', '\~$']
+
+" rainbow parentheses config
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+\	'ctermfgs': ['lightblue', 'lightyellow', 'darkgreen', 'darkmagenta'],
+\	'operators': '_,_',
+\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\	'separately': {
+\		'*': {},
+\		'tex': {
+\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\		},
+\		'lisp': {
+\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+\		},
+\		'vim': {
+\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\		},
+\		'html': {
+\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\		},
+\		'css': 0,
+\	}
+\}
+
+" ale config
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
+"do not check when texts are changed
+let g:ale_lint_on_text_changed = 'always'
+"do not check when texts are opened
+let g:ale_lint_on_enter = 1 
+"ALE ignores all linters powered by LSP
+let g:ale_disable_lsp = 1
+let g:ale_fixers = {
+\   'c': ['clang-format'],
+\   'cpp': ['clang-format'],
+\   'python': ['yapf'],
+\}
+let g:ale_linters = {
+\   'c': ['clang'],
+\   'cpp': ['clang'],
+\   'python': ['flake8'],
+\}
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap) 
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" Bind F8 to fixing problems with ALE
+nmap <F6> :ALEFix<CR>
+nmap <Leader>s :ALEToggle<CR>
+"<Leader>d detail information about errors and warnings
+nmap <Leader>d :ALEDetail<CR>
+"ALE's preview-window will be automatically opened when the cursor moves onto lines with problems.
+"let g:ale_cursor_detail = 1
+"ALE's preview-window will be automatically closed upon entering Insert Mode
+"let g:ale_close_preview_on_insert = 1
+
+
+
+" ctrlP config
+""<Leader>p to find files under current directory.
+let g:ctrlp_map = '<Leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+"<Leader>f to find most recently used files
+nmap <Leader>f :CtrlPMRUFiles<CR>
+"<Leader>b to display files in buffer
+nmap <Leader>b :CtrlPBuffer<CR>
+" ignoring setting
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_bottom = 1
+"maximum lines in QuickFix window
+let g:ctrlp_max_height = 10
+let g:ctrlp_match_window_reversed = 0
+"maximum number of MRU
+let g:ctrlp_mruf_max = 500
+let g:ctrlp_follow_symlinks = 1
+"let g:ctrlp_by_filename = 1
+" do not use regular expression, <C-r> to toggle
+let g:ctrlp_regexp = 0
+" a signal in the list
+let g:ctrlp_line_prefix = '♪ '
+
+" tagbar config
+nmap <F3> :TagbarToggle<CR>
+let g:tagbar_iconchars = ['▸', '▾']
+
+"" clang_complete config
+"let g:clang_library_path='/home/caizefeng/llvm/lib'  " replace by your own llvm/lib dir
+"" auto select nothing 
+"let g:clang_auto_select = 0
+"" do not hightlight error detected by clang
+"let g:clang_hl_errors = 0
+"" disenable preview window
+"let g:clang_close_preview = 1
+"let g:clang_jumpto_declaration_key = '<C-p>'
+"let g:clang_jumpto_back_key = '<C-o>'
+
+""a.vim config
+"":A switches to the header file corresponding to the current file being edited (or vise versa)
+"nmap <C-i> :A<CR>
+""Just <Tab> can switch between header and source files
+
+" mapping
+" close highlight after use gd
+nmap gf :noh<CR>
+nmap <C-x> :bn<CR>
+nmap <C-z> :bp <CR>
+nmap <C-v> :bd<CR>
+nmap <C-a> ggVG<CR>
+
+" basic
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set number
+syntax on
+set showmode
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=utf-8,gbk,latin1
+set fileformat=unix
+set t_Co=256
+filetype indent on
+"set mouse=a
+
+" indent
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+
+" appearance
+set textwidth=0
+set ruler
+set cursorline
+set wrap
+colorscheme molokai
+"set foldmethod=indent
+"set foldlevel=99
+"nnoremap <space> za
+
+" search
+set showmatch
+hi MatchParen ctermbg=Yellow guibg=lightblue
+set hlsearch
+set incsearch
+set ignorecase
+set hidden "allow switching if not reserved yet
+
+" edition
+set nobackup
+set noerrorbells
+set history=1000
+set backspace=indent,eol,start  "or the <backspace> can not work
+set whichwrap=<,>,[,]
+
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+        exec 'w'
+        if &filetype ==? 'c'
+                exec '!g++ % -o %<'
+                exec '!time ./%<'
+        elseif &filetype ==? 'cpp'
+                exec '!g++ % -o %<'
+                exec '!time ./%<'
+        elseif &filetype ==? 'java'
+                exec '!javac %'
+                exec '!time java %<'
+        elseif &filetype ==? 'sh'
+                :!time bash %
+        elseif &filetype ==? 'python'
+                "exec '!clear'
+                exec '!time python3 %'
+		"can add 'time' to display time
+        elseif &filetype ==? 'html'
+                exec '!firefox % &'
+        elseif &filetype ==? 'go'
+                " exec '!go build %<'
+                exec '!time go run %'
+        elseif &filetype ==? 'mkd'
+                exec '!~/.vim/markdown.pl % > %.html &'
+                exec '!firefox %.html &'
+        endif
+endfunc
+
+" Prevent vim from trying to connect to the X server when connecting 
+" from home, which causes a startup delay of about 14 seconds. I 
+" usually connect from home via screen. 
+" 
+"set clipboard=autoselect,exclude:cons\\\|linux\\\|screen 
+" 
+" Using $DISPLAY instead of 'term' should be more reliable. It avoids 
+" the problem of starting vim without first starting screen and allows 
+" screen to be used locally without losing vim's X features. 
+" 
+"if $DISPLAY =~ '\(\(cos\|scs\)\d\+nai\d\+\)\|\(spkpc\d\+\)\|\(tc-garyjohn\)' 
+set clipboard=autoselect,exclude:.* 
+"endif 
+
+"map <F7> :call AddTitle()<CR>
+"function AddTitle()
+    "call append(0,'/*******************************************************************************')
+    "call append(1,'*')
+    "call append(2,'*   Copyright (c) 2019 by Long Chen, Zefeng Cai') 
+    "call append(3,'*')
+    "call append(4,'*   Permission is hereby granted, free of charge, to any person obtaining a')
+    "call append(5,'*   copy of this software and associated documentation files (the "Software"),') 
+    "call append(6,'*   to deal in the Software without restriction, including without limitation') 
+    "call append(7,'*   the rights to use, copy, modify, merge, publish, distribute, sublicense,') 
+    "call append(8,'*   and/or sell copies of the Software, and to permit persons to whom the') 
+    "call append(9,'*   Software is furnished to do so, subject to the following conditions:')
+    "call append(10,'*')
+    "call append(11,'*   The above copyright notice and this permission notice shall be ')
+    "call append(12,'*   included in all copies or substantial portions of the Software.')
+    "call append(13,'*')
+    "call append(14,'*   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, ')
+    "call append(15,'*   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES ')
+    "call append(16,'*   OF MERCHANTABILIY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGE')
+    "call append(17,'*   -MENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE')
+    "call append(18,'*   FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF')
+    "call append(19,'*   CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION')
+    "call append(20,'*   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.')
+    "call append(21,'*')
+    "call append(22,'*******************************************************************************')
+    "call append(23,'*')
+    "call append(24,'*   Program: Oh My Civilization')
+    "call append(25,'*   Version: 0.1')
+    "call append(26,'*   Date:    May 2019')
+    "call append(27,'*   Author:  Long Chen, Zefeng Cai')
+    "call append(28,'*   Contact: czf17@mails.tsinghua.edu.cn')
+    "call append(29,'*   Address: Tsinghua University, Haidian District, Beijing, China')
+    "call append(30,'*   Description: a command line game in honor of classic Civilization')
+    "call append(31,'*')
+    "call append(32,'******************************************************************************/')
+    "echohl WarningMsg | echo 'Successful in adding the copyright.' | echohl None
+"endf
