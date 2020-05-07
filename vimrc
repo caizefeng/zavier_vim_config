@@ -105,6 +105,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeIgnore=['\.o$', '\.ko$', '\.so$', '\.a$', '\.bak$', '\~$']
 let NERDTreeSortOrder=['\/$', 'Makefile', '\.c$', '\.cc$', '\.cpp$', '\.h$', '*', '\~$']
 
+
 " rainbow parentheses config
 let g:rainbow_active = 1
 let g:rainbow_conf = {
@@ -168,30 +169,30 @@ nmap <Leader>d :ALEDetail<CR>
 
 " ctrlP config
 ""<Leader>p to find files under current directory.
-let g:ctrlp_map = '<Leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-"<Leader>f to find most recently used files
-nmap <Leader>f :CtrlPMRUFiles<CR>
-"<Leader>b to display files in buffer
-nmap <Leader>b :CtrlPBuffer<CR>
-" ignoring setting
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-    \ }
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_match_window_bottom = 1
-"maximum lines in QuickFix window
-let g:ctrlp_max_height = 10
-let g:ctrlp_match_window_reversed = 0
-"maximum number of MRU
-let g:ctrlp_mruf_max = 500
-let g:ctrlp_follow_symlinks = 1
-"let g:ctrlp_by_filename = 1
-" do not use regular expression, <C-r> to toggle
-let g:ctrlp_regexp = 0
-" a signal in the list
-let g:ctrlp_line_prefix = '♪ '
+"let g:ctrlp_map = '<Leader>p'
+"let g:ctrlp_cmd = 'CtrlP'
+""<Leader>f to find most recently used files
+"nmap <Leader>f :CtrlPMRUFiles<CR>
+""<Leader>b to display files in buffer
+"nmap <Leader>b :CtrlPBuffer<CR>
+"" ignoring setting
+"let g:ctrlp_custom_ignore = {
+    "\ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    "\ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    "\ }
+"let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_match_window_bottom = 1
+""maximum lines in QuickFix window
+"let g:ctrlp_max_height = 10
+"let g:ctrlp_match_window_reversed = 0
+""maximum number of MRU
+"let g:ctrlp_mruf_max = 500
+"let g:ctrlp_follow_symlinks = 1
+""let g:ctrlp_by_filename = 1
+"" do not use regular expression, <C-r> to toggle
+"let g:ctrlp_regexp = 0
+"" a signal in the list
+"let g:ctrlp_line_prefix = '♪ '
 
 " tagbar config
 nmap <F3> :TagbarToggle<CR>
