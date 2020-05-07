@@ -3,6 +3,9 @@ if exists("b:current_syntax")
 endif
 let b:current_syntax = "incar"
 
+set commentstring=#\ %s
+
+syn clear
 " source
 "http://cms.mpi.univie.ac.at/wiki/index.php/Category:INCAR
 syn keyword incarKeyword
@@ -90,6 +93,9 @@ syn keyword incarConstant
 " params of PREC
 syn keyword incarConstant
  \ Low Medium High Normal Single Accurate 
+" param of LREAL
+syn keyword incarConstant
+ \ On Auto
 syn match incarConstant '\.TRUE\.'
 syn match incarConstant '\.FALSE\.'
 syn match incarConstant '\.T\.'
@@ -99,10 +105,10 @@ syn match incarConstant '\v[-+]?(\d+\.)?\d+[eE]?-?\d*\s?'
 
 " Define the highlighting
 hi link incarKeyword Keyword
-hi link vaspGlobal Function
-hi link vaspCorrelation Define
-hi link vaspAlgo Function
-hi link vaspStatic Define
+hi link vaspGlobal Define
+hi link vaspCorrelation Function
+hi link vaspAlgo Define
+hi link vaspStatic Function
 hi link vaspIon Repeat
 hi link vaspMagnetic Repeat
 hi link vaspOptic Repeat
