@@ -11,6 +11,6 @@ autocmd BufNewFile,BufRead KPOINTS* set filetype=kpoints
 autocmd BufNewFile,BufRead OUTCAR* set filetype=outcar
 
 " CHGCAR filetype detection
-autocmd BufNewFile,BufRead CHGCAR*,CHG* set filetype=chgcar
+autocmd BufNewFile,BufRead CHG* set filetype=chgcar
 
 
