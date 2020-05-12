@@ -5,7 +5,7 @@
 if exists("b:current_syntax")
   finish
 endif
-let b:current_syntax = "poscar"
+let b:current_syntax = "chgcar"
 
 set commentstring=#\ %s
 
