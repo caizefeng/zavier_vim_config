@@ -86,28 +86,28 @@ syn match incarOperator "\v\="
 "  CONSTANTS  "
 """""""""""""""
 " params of ALGO
-syn keyword incarConstant
+syn keyword incarIdentifier
  \ Normal VeryFast Fast Conjugate All Damped Subrot Eigenval Exact 
  \ None Nothing CHI G0W0 GW0 GW scGW0 scGW G0W0R GW0R GWR scGW0R scGWR ACFDT
  \ RPA ACFDTR RPAR BSE TDHF
 " params of PREC
-syn keyword incarConstant
+syn keyword incarIdentifier
  \ Low Medium High Normal Single Accurate 
 " param of LREAL
-syn keyword incarConstant
+syn keyword incarIdentifier
  \ On Auto
-syn match incarConstant '\.TRUE\.'
-syn match incarConstant '\.FALSE\.'
-syn match incarConstant '\.T\.'
-syn match incarConstant '\.F\.'
+syn match incarIdentifier '\.TRUE\.'
+syn match incarIdentifier '\.FALSE\.'
+syn match incarIdentifier '\.T\.'
+syn match incarIdentifier '\.F\.'
 syn match incarConstant '\v[-+]?(\d+\.)?\d+[eE]?-?\d*\s?'
 
 
 " Define the highlighting
 hi link incarKeyword Keyword
 hi link vaspGlobal Define
-hi link vaspCorrelation Function
 hi link vaspAlgo Define
+hi link vaspCorrelation Function
 hi link vaspStatic Function
 hi link vaspIon Repeat
 hi link vaspMagnetic Repeat
@@ -116,3 +116,4 @@ hi link incarComment Comment
 hi link incarCommentInline Comment
 hi link incarOperator String
 hi link incarConstant Constant
+hi link incarIdentifier Identifier
