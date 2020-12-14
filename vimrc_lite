@@ -34,6 +34,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'vim-scripts/a.vim'
 
 Plugin 'alejandrogallo/vasp.vim'
+
+Plugin 'sencer/lammps.vim'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'neomake/neomake'
 "Plugin 'vim-syntastic/syntastic'

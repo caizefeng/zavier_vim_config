@@ -5,7 +5,7 @@
 if exists("b:current_syntax")
   finish
 endif
-let b:current_syntax = "poscar"
+let b:current_syntax = "chgcar"
 
 set commentstring=#\ %s
 
@@ -28,13 +28,13 @@ syntax keyword coordinatesMode Cart Cubic Dir
 syntax keyword coordinatesMode cartesian cubic direct
 syntax keyword coordinatesMode cart dir
 
-"syntax match coordinatesMode "Selective dynamics"
-"syntax match coordinatesMode "Selective Dynamics"
-"syntax match coordinatesMode "selective dynamics"
-"syntax match coordinatesMode "Selective"
-"syntax match coordinatesMode "selective"
-syntax match selectiveMode "Select.*$"
-syntax match selevtiveMode "select.*$"
+syntax match coordinatesMode "Selective dynamics"
+syntax match coordinatesMode "Selective Dynamics"
+syntax match coordinatesMode "selective dynamics"
+syntax match coordinatesMode "Selective"
+syntax match coordinatesMode "selective"
+syntax match coordinatesMode "Select"
+syntax match coordinatesMode "select"
 
 syntax match latticeConstant "^\%>1l\%<3l.*$"
 
@@ -42,8 +42,6 @@ syntax match latticeVectors "^\%>2l\%<6l.*$"
 
 syntax match numberOfAtoms "\%7l\d\+"
 
-syntax match selectiveMode "T "
-syntax match selectiveMode "T$"
 
 highlight link numberOfAtoms String
 highlight link latticeVectors Structure
@@ -51,4 +49,3 @@ highlight link latticeConstant Constant
 highlight link poscarComment Comment
 highlight link elements Identifier
 highlight link coordinatesMode Keyword
-highlight link selectiveMode Function
