@@ -71,7 +71,9 @@ syn keyword vaspOptic
 " the \v key means vim's very magic regex 
 syn match incarComment "\v#.*$"
 syn match incarComment "\v!.*$"
-syn match incarComment "^[^=]*$"
+syn match incarComment "^[^=]*[A-Za-z]\+[^=]*[!#]\?.*$"
+syn match incarComment "[#!].\{-}\(\\.*\n[^\\]*\)\+"
+
 " the space before the left bracket is necessary to match it, but other
 " delimiters do not need the space
 syn region incarComment start=' (' end=')'
